@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ RISHU FAST CONVO BOT 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        
+        .header .badge {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        /* Monitor Cards */
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .monitor-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .monitor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .monitor-card .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .monitor-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Main Card */
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .card h2 {
+            margin-bottom: 20px;
+            color: #333;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+            font-size: 1.3em;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Cookie Method Toggle */
+        .method-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .method-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .method-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        /* Input Areas */
+        .input-area {
+            transition: all 0.3s;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-start {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76,175,80,0.3);
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76,175,80,0.4);
+        }
+        
+        .btn-stop {
+            background: linear-gradient(45deg, #f44336, #da190b);
+            color: white;
+            box-shadow: 0 5px 15px rgba(244,67,54,0.3);
+        }
+        
+        .btn-stop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(244,67,54,0.4);
+        }
+        
+        /* Stop Task Row */
+        .stop-row {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .stop-row input {
+            flex: 2;
+        }
+        
+        .stop-row button {
+            flex: 1;
+        }
+        
+        /* Log Box */
+        .log-box {
+            background: #1e1e2f;
+            border-radius: 15px;
+            padding: 15px;
+            color: #fff;
+            font-family: 'Monaco', 'Menlo', monospace;
+            height: 250px;
+            overflow-y: auto;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        
+        .log-time {
+            color: #888;
+            margin-right: 10px;
+        }
+        
+        .log-success {
+            color: #4CAF50;
+        }
+        
+        .log-error {
+            color: #f44336;
+        }
+        
+        .log-info {
+            color: #2196F3;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .monitor-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stop-row {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>⚡ RISHU CONVO BOT 2026</h1>
+            <div class="badge">🚀 ULTRA FAST | v3.0</div>
+        </div>
+        
+        <!-- MONITOR CARDS -->
+        <div class="monitor-grid">
+            <div class="monitor-card">
+                <div class="label">⏰ UPTIME</div>
+                <div class="value" id="uptime">0h 0m 0s</div>
+            </div>
+            <div class="monitor-card">
+                <div class="label">🎯 ACTIVE TASKS</div>
+                <div class="value" id="activeTasks">0</div>
+            </div>
+            <div class="monitor-card">
+                <div class="label">✅ SENT</div>
+                <div class="value" id="sentCount">0</div>
+            </div>
+            <div class="monitor-card">
+                <div class="label">❌ FAILED</div>
+                <div class="value" id="failedCount">0</div>
+            </div>
+        </div>
+        
+        <!-- START TASK CARD -->
+        <div class="card">
+            <h2>🎯 START NEW TASK</h2>
+            
+            <!-- Cookie Method Toggle -->
+            <div class="form-group">
+                <label>📌 COOKIE INPUT METHOD</label>
+                <div class="method-toggle" id="cookieMethodToggle">
+                    <button class="method-btn active" onclick="setCookieMethod('file')">📁 FILE UPLOAD</button>
+                    <button class="method-btn" onclick="setCookieMethod('paste')">📋 PASTE COOKIES</button>
+                </div>
+            </div>
+            
+            <!-- File Upload Area -->
+            <div id="fileArea" class="input-area">
+                <div class="form-group">
+                    <label>📁 COOKIES FILE (.txt)</label>
+                    <input type="file" id="cookieFile" accept=".txt">
+                    <small style="color: #666; display: block; margin-top: 5px;">Format: JSON array ya raw cookie string</small>
+                </div>
+            </div>
+            
+            <!-- Paste Area -->
+            <div id="pasteArea" class="input-area hidden">
+                <div class="form-group">
+                    <label>📋 PASTE COOKIES HERE</label>
+                    <textarea id="cookieText" placeholder='[
+    {"key":"c_user","value":"12345"},
+    {"key":"xs","value":"abc123"}
+]
+Ya fir:
+c_user=12345; xs=abc123;'></textarea>
+                </div>
+            </div>
+            
+            <!-- Message File -->
+            <div class="form-group">
+                <label>💬 MESSAGE FILE (.txt)</label>
+                <input type="file" id="msgFile" accept=".txt">
+                <small style="color: #666; display: block; margin-top: 5px;">Ek line = ek message</small>
+            </div>
+            
+            <!-- Thread ID -->
+            <div class="form-group">
+                <label>🎯 THREAD/ GROUP ID</label>
+                <input type="text" id="threadID" placeholder="Eg: 1234567890">
+            </div>
+            
+            <!-- Delay -->
+            <div class="form-group">
+                <label>⏱️ DELAY (seconds)</label>
+                <input type="number" id="delay" value="10" min="1" max="60">
+            </div>
+            
+            <!-- Haters Name -->
+            <div class="form-group">
+                <label>👤 HATERS NAME (comma separated)</label>
+                <input type="text" id="hatersName" placeholder="Eg: Rishu, Raj, Mohit">
+                <small style="color: #666; display: block; margin-top: 5px;">Randomly select hoga har message me</small>
+            </div>
+            
+            <!-- Last Name -->
+            <div class="form-group">
+                <label>👥 LAST NAME (comma separated)</label>
+                <input type="text" id="lastName" placeholder="Eg: Sharma, Kumar, Singh">
+                <small style="color: #666; display: block; margin-top: 5px;">Message ke end me lagega</small>
+            </div>
+            
+            <!-- Start Button -->
+            <button class="btn btn-start" onclick="startTask()" id="startBtn">
+                🚀 START TASK
+            </button>
+        </div>
+        
+        <!-- STOP TASK CARD -->
+        <div class="card">
+            <h2>⏹️ STOP TASK</h2>
+            <div class="stop-row">
+                <input type="text" id="stopTaskId" placeholder="Enter Task ID">
+                <button class="btn btn-stop" onclick="stopTask()">STOP</button>
+            </div>
+        </div>
+        
+        <!-- LOG CARD -->
+        <div class="card">
+            <h2>📋 LIVE LOG</h2>
+            <div class="log-box" id="logBox">
+                <div class="log-entry">
+                    <span class="log-time">⚡</span>
+                    <span class="log-info">Ready to connect...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================= CONFIG =================
+        const WS_URL = `ws://${window.location.host}/ws`;
+        let ws = null;
+        let reconnectTimer = null;
+        let currentTaskId = null;
+        
+        // ================= DOM ELEMENTS =================
+        const uptimeEl = document.getElementById('uptime');
+        const activeTasksEl = document.getElementById('activeTasks');
+        const sentCountEl = document.getElementById('sentCount');
+        const failedCountEl = document.getElementById('failedCount');
+        const logBox = document.getElementById('logBox');
+        
+        // ================= COOKIE METHOD TOGGLE =================
+        window.setCookieMethod = function(method) {
+            // Update buttons
+            document.querySelectorAll('.method-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide areas
+            const fileArea = document.getElementById('fileArea');
+            const pasteArea = document.getElementById('pasteArea');
+            
+            if (method === 'file') {
+                fileArea.classList.remove('hidden');
+                pasteArea.classList.add('hidden');
+            } else {
+                fileArea.classList.add('hidden');
+                pasteArea.classList.remove('hidden');
+            }
+        };
+        
+        // ================= LOG FUNCTION =================
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            
+            const time = new Date().toLocaleTimeString();
+            
+            let colorClass = 'log-info';
+            if (type === 'success') colorClass = 'log-success';
+            if (type === 'error') colorClass = 'log-error';
+            
+            entry.innerHTML = `
+                <span class="log-time">[${time}]</span>
+                <span class="${colorClass}">${message}</span>
+            `;
+            
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+            
+            // Keep last 100 logs
+            if (logBox.children.length > 100) {
+                logBox.removeChild(logBox.children[0]);
+            }
+        }
+        
+        // ================= WEBSOCKET CONNECTION =================
+        function connectWebSocket() {
+            if (reconnectTimer) {
+                clearTimeout(reconnectTimer);
+                reconnectTimer = null;
+            }
+            
+            try {
+                ws = new WebSocket(WS_URL);
+                
+                ws.onopen = function() {
+                    addLog('✅ Connected to server', 'success');
+                    // Request initial stats
+                    ws.send(JSON.stringify({ type: 'monitor' }));
+                };
+                
+                ws.onclose = function() {
+                    addLog('⚠️ Disconnected. Reconnecting...', 'error');
+                    reconnectTimer = setTimeout(connectWebSocket, 3000);
+                };
+                
+                ws.onerror = function(error) {
+                    addLog('❌ Connection error', 'error');
+                };
+                
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        
+                        switch(data.type) {
+                            case 'log':
+                                addLog(data.message);
+                                break;
+                                
+                            case 'task_started':
+                                currentTaskId = data.taskId;
+                                document.getElementById('stopTaskId').value = data.taskId;
+                                addLog(`🚀 Task started! ID: ${data.taskId}`, 'success');
+                                break;
+                                
+                            case 'stopped':
+                                addLog(`⏹️ Task stopped: ${data.taskId}`, 'info');
+                                if (currentTaskId === data.taskId) {
+                                    currentTaskId = null;
+                                }
+                                break;
+                                
+                            case 'monitor_data':
+                                // Format uptime
+                                const hours = Math.floor(data.uptime / 3600);
+                                const minutes = Math.floor((data.uptime % 3600) / 60);
+                                const seconds = data.uptime % 60;
+                                uptimeEl.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                                
+                                activeTasksEl.textContent = data.activeTasks;
+                                sentCountEl.textContent = data.totalSent;
+                                failedCountEl.textContent = data.totalFailed || 0;
+                                break;
+                        }
+                    } catch(e) {
+                        console.log('Parse error:', e);
+                    }
+                };
+                
+            } catch(e) {
+                addLog('❌ Failed to connect', 'error');
+                reconnectTimer = setTimeout(connectWebSocket, 3000);
+            }
+        }
+        
+        // ================= START TASK =================
+        window.startTask = function() {
+            // Get cookie method
+            const method = document.querySelector('.method-btn.active')?.textContent.includes('FILE') ? 'file' : 'paste';
+            
+            // Validate
+            if (method === 'file') {
+                const cookieFile = document.getElementById('cookieFile').files[0];
+                if (!cookieFile) {
+                    addLog('❌ Please select cookies file', 'error');
+                    return;
+                }
+            } else {
+                const cookieText = document.getElementById('cookieText').value;
+                if (!cookieText.trim()) {
+                    addLog('❌ Please paste cookies', 'error');
+                    return;
+                }
+            }
+            
+            const msgFile = document.getElementById('msgFile').files[0];
+            if (!msgFile) {
+                addLog('❌ Please select message file', 'error');
+                return;
+            }
+            
+            const threadID = document.getElementById('threadID').value.trim();
+            if (!threadID) {
+                addLog('❌ Please enter thread/group ID', 'error');
+                return;
+            }
+            
+            // Read files
+            const readFile = (file) => {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsText(file);
+                });
+            };
+            
+            // Disable button
+            const btn = document.getElementById('startBtn');
+            btn.disabled = true;
+            btn.innerHTML = '⏳ STARTING...';
+            
+            // Read all files
+            Promise.all([
+                method === 'file' ? readFile(document.getElementById('cookieFile').files[0]) : document.getElementById('cookieText').value,
+                readFile(msgFile)
+            ]).then(([cookieContent, messageContent]) => {
+                
+                // Send to server
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({
+                        type: 'start',
+                        cookieContent: cookieContent,
+                        messageContent: messageContent,
+                        threadID: threadID,
+                        delay: document.getElementById('delay').value,
+                        hatersName: document.getElementById('hatersName').value,
+                        lastHereName: document.getElementById('lastName').value
+                    }));
+                    
+                    addLog('📤 Task request sent', 'info');
+                } else {
+                    addLog('❌ Not connected to server', 'error');
+                }
+                
+                // Enable button
+                btn.disabled = false;
+                btn.innerHTML = '🚀 START TASK';
+            });
+        };
+        
+        // ================= STOP TASK =================
+        window.stopTask = function() {
+            const taskId = document.getElementById('stopTaskId').value.trim();
+            if (!taskId) {
+                addLog('❌ Please enter task ID', 'error');
+                return;
+            }
+            
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'stop_by_id',
+                    taskId: taskId
+                }));
+                addLog(`⏹️ Stop request sent for ${taskId}`, 'info');
+            } else {
+                addLog('❌ Not connected to server', 'error');
+            }
+        };
+        
+        // ================= AUTO MONITOR =================
+        setInterval(() => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'monitor' }));
+            }
+        }, 2000);
+        
+        // ================= INITIALIZE =================
+        connectWebSocket();
+        
+        // Cleanup
+        window.addEventListener('beforeunload', function() {
+            if (reconnectTimer) {
+                clearTimeout(reconnectTimer);
+            }
+        });
+        
+        addLog('⚡ RISHU FAST BOT READY', 'success');
+    </script>
+</body>
+</html>
