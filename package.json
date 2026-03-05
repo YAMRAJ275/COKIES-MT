@@ -1,22 +1,22 @@
 {
-  "name": "raw-cookies-fb-bot",
+  "name": "rishu-fast-convo-bot",
   "version": "1.0.0",
-  "description": "A Facebook message sender using raw cookies and WebSocket control.",
+  "description": "⚡ Ultra Fast Facebook Conversation Bot - 2026",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
-  "keywords": [
-    "facebook",
-    "fca",
-    "websocket",
-    "express"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.18.2",
     "fca-mafiya": "latest",
-    "ws": "^8.18.0"
-  }
+    "ws": "^8.14.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["facebook", "bot", "convo", "messenger", "automation"],
+  "author": "RISHU",
+  "license": "MIT"
 }
